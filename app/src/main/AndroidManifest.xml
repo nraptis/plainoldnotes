@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlainOldNotes"
         tools:targetApi="31">
-        <activity android:name=".MainActivity"
+        <activity android:name=".com.example.plainoldnotes.MainActivity"
             android:exported="true"
             android:label="notes">
             <intent-filter>

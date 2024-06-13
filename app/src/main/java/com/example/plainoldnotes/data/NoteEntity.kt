@@ -1,4 +1,4 @@
-package com.example.plainoldnotes.data
+package com.example.plainoldnotes.com.example.plainoldnotes.data
 
 import com.example.plainoldnotes.com.example.plainoldnotes.NEW_NOTE_ID
 import java.util.Date
