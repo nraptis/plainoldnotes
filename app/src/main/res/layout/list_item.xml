@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/ic_add"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/noteText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
