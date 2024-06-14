@@ -14,36 +14,36 @@ import com.example.plainoldnotes.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel// by viewModels()
-    private lateinit var binding: FragmentMainBinding
+    private val viewModel: MainViewModel by viewModels()
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
     private lateinit var adapter: NotesListAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        viewModel = MainViewModel()
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         with(binding.recyclerView) {
             setHasFixedSize(true)
-            val divider = DividerItemDecoration(context, LinearLayoutManager(context).orientation)
+            layoutManager = LinearLayoutManager(context)
+            val divider = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
             addItemDecoration(divider)
         }
 
-        Log.d("any", "anything")
-        viewModel.notesList.observe(viewLifecycleOwner, Observer {
-            Log.d("noteLog",  it.toString())
-            adapter = NotesListAdapter(it)
+        viewModel.notesList.observe(viewLifecycleOwner, Observer { notes ->
+            Log.d("MainFragment", "Notes list updated: $notes")
+            adapter = NotesListAdapter(notes)
             binding.recyclerView.adapter = adapter
-            binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
+    }
 
-        return binding.root
-        //inflater.inflate(R.layout.fragment_main, container, false)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
