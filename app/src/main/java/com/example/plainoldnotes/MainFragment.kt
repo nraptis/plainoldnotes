@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.plainoldnotes.databinding.FragmentMainBinding
@@ -24,7 +25,8 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        viewModel = MainViewModel()
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
         with(binding.recyclerView) {
