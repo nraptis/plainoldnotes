@@ -1,6 +1,6 @@
 package com.example.plainoldnotes.data
 
-import com.example.plainoldnotes.com.example.plainoldnotes.data.NoteEntity
+import com.example.plainoldnotes.data.NoteEntity
 import java.util.Date
 
 class SampleDataProvider {
